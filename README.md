@@ -19,20 +19,20 @@
 **_Ensure that your machine installed docker_**
 
 ```sh
-$ sudo sh ./addons/postgres/postgres-setup.sh
+$ cd ./addons/postgres && sudo sh postgres-setup.sh
 
 ```
 
 And then:
 
 ```sh
-$ cd addons/postgres/ && docker compose up -d
+$ docker compose up -d
 
 ```
 
 **or:**
 
 ```sh
-$ cd addons/postgres/ && docker-compose up -d
+$ docker-compose up -d
 
 ```

@@ -12,6 +12,6 @@ export class User extends AbstractEnity {
     @Column()
     password: string;
 
-    @Column({ type: Boolean, default: true })
-    isActive: boolean;
+    @Column({ type: String, nullable: true })
+    email: string;
 }

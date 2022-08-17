@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import jwt from 'jsonwebtoken';
+import { AppConfigConstant } from './../appConfig/appConfig.const';
 
 @Injectable()
 export class TokenService {
@@ -9,9 +10,11 @@ export class TokenService {
         return new Promise((resolve, reject) => {
             jwt.sign(
                 payload,
-                this.configuration.get<string>('SECRET_KEY'),
+                this.configuration.get<string>(AppConfigConstant.SECRET_KEY),
                 {
-                    issuer: this.configuration.get<string>('PROJECT_NAME'),
+                    issuer: this.configuration.get<string>(
+                        AppConfigConstant.PROJECT_NAME
+                    ),
                     expiresIn: expiresIn,
                 },
                 (err, encoded) => {
@@ -28,7 +31,7 @@ export class TokenService {
         return new Promise((resolve, reject) => {
             jwt.verify(
                 token,
-                this.configuration.get('SECRET_KEY'),
+                this.configuration.get(AppConfigConstant.SECRET_KEY),
                 (err, decoded) => {
                     if (err) {
                         reject(err);
