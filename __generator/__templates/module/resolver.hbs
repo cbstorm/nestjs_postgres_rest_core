@@ -1,0 +1,42 @@
+import { Args, Ctx, Mutation, Query, Resolver } from 'type-graphql';
+import { Context } from '../../../Common/context';
+import { GetOneArgs } from '../../Dtos/Args.dto';
+import { FetchArgs } from '../../Dtos/Fetch/FetchArgs.dto';
+import { AuthorizeAction } from './../../../Common/context';
+import { DeleteOneArgs } from './../../Dtos/Args.dto';
+import { Create{{Case name}}Args, Fetch{{Case name}}Response, Update{{Case name}}Args } from './{{name}}.dto';
+import { {{Case name}} } from './{{name}}.model';
+import {{Case name}}Service from './{{name}}.service';
+
+const moduleName = '{{name}}';
+
+
+@Resolver()
+export class {{Case name}}Resolver {
+    @Query(() => Fetch{{Case name}}Response)
+    async fetch{{Case name}}s(@Args() args: FetchArgs, @Ctx() ctx: Context) {
+        await ctx.auth(moduleName, AuthorizeAction.READ);
+        return await {{Case name}}Service.fetch(args, ctx);
+    }
+    @Query(() => {{Case name}})
+    async getOne{{Case name}}(@Args() args: GetOneArgs, @Ctx() ctx: Context) {
+        await ctx.auth(moduleName, AuthorizeAction.READ);
+        return await {{Case name}}Service.getOne(args, ctx);
+    }
+    @Mutation(() => {{Case name}})
+    async create{{Case name}}(@Args() args: Create{{Case name}}Args, @Ctx() ctx: Context) {
+        await ctx.auth(moduleName, AuthorizeAction.CREATE);
+        return await {{Case name}}Service.create(args, ctx);
+    }
+    @Mutation(() => {{Case name}})
+    async update{{Case name}}(@Args() args: Update{{Case name}}Args, @Ctx() ctx: Context) {
+        await ctx.auth(moduleName, AuthorizeAction.UPDATE);
+        return await {{Case name}}Service.update(args, ctx);
+    }
+
+    @Mutation(() => {{Case name}})
+    async delete{{Case name}}(@Args() args: DeleteOneArgs, @Ctx() ctx: Context) {
+        await ctx.auth(moduleName, AuthorizeAction.DELETE);
+        return await {{Case name}}Service.delete(args, ctx);
+    }
+}

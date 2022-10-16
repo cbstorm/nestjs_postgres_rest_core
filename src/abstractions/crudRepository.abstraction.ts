@@ -12,4 +12,10 @@ export abstract class CRUDRepository<
         const doc = this.baseRepository.create(data);
         return this.baseRepository.save(doc);
     }
+
+    async deleteOne(id: number): Promise<T> {
+        const doc = await this.baseRepository.findOneBy({ id: id });
+        this.baseRepository.delete(doc);
+        return doc;
+    }
 }

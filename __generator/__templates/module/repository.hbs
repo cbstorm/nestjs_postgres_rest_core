@@ -1,0 +1,9 @@
+import { Repository } from '../../Base/Repositories/Repository';
+import { {{Case name}}, {{Case name}}Model } from './{{name}}.model';
+
+class {{Case name}}Repository extends Repository<{{Case name}}> {
+    constructor() {
+        super({{Case name}}Model, '{{modelName}}');
+    }
+}
+export default new {{Case name}}Repository();

@@ -1,0 +1,13 @@
+import { getModelForClass, modelOptions, prop } from '@typegoose/typegoose';
+import { Field, ObjectType } from 'type-graphql';
+import { {{Case type}}Entity } from '../../Base/Entities/{{Case type}}Entity';
+
+@ObjectType()
+@modelOptions({ schemaOptions: { collection: '{{name}}s' } })
+export class {{Case name}} extends {{Case type}}Entity<{{Case name}}> {
+    @Field(() => String, { nullable: true })
+    @prop({ type: String })
+    string?: string;
+}
+
+export const {{Case name}}Model = getModelForClass({{Case name}});

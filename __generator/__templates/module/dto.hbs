@@ -1,0 +1,33 @@
+import { ArgsType, Field, ID, InputType, ObjectType } from 'type-graphql';
+import FetchResponse from '../../Dtos/Fetch/FetchResponse.dto';
+import { Create{{Case type}}Input, Update{{Case type}}Input } from '../../Dtos/{{Case type}}.dto';
+import { {{Case name}} } from './{{name}}.model';
+
+@ObjectType()
+export class Fetch{{Case name}}Response extends FetchResponse({{Case name}}) {}
+@InputType()
+class Create{{Case name}}Input extends Create{{Case type}}Input {
+    @Field((type) => String, { nullable: true })
+    string: string;
+}
+
+@ArgsType()
+export class Create{{Case name}}Args {
+    @Field((type) => Create{{Case name}}Input)
+    data: Create{{Case name}}Input;
+}
+
+@InputType()
+class Update{{Case name}}Input extends Update{{Case type}}Input {
+    @Field(() => String, { nullable: true })
+    string: string;
+}
+
+@ArgsType()
+export class Update{{Case name}}Args {
+    @Field(() => ID)
+    _id: string;
+
+    @Field(() => Update{{Case name}}Input)
+    data: Update{{Case name}}Input;
+}
